@@ -111,21 +111,21 @@ WSGI_APPLICATION = 'paginaWeb.wsgi.application'
 
 DATABASES = {
     'default': {    # Para despliegue
-        #'default': dj_database_url.config(        
-            # Feel free to alter this value to suit your needs.        
-        #    default='postgresql://postgres:postgres@localhost:5432/mysite',        
-        #    conn_max_age=600    )
+        dj_database_url.config(        
+        # Feel free to alter this value to suit your needs.        
+        default='postgresql://postgres:postgres@localhost:5432/mysite', conn_max_age=600),
     
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
         
+        """
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': config("DB_NAME"),
         'USER': config("DB_USER"),
         'PASSWORD': config("DB_PASSWORD"),
         #'HOST': config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')]),
         'HOST': config('ALLOWED_HOSTS'),
-        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)
+        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)  """
     }
 }
 
@@ -188,9 +188,6 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOTS = "smtp.gmail.com"
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
-#EMAIL_USE_TLS = False
-
-
 EMAIL_HOTS_USER = config("EMAIL_HOTS_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 

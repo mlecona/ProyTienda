@@ -5,12 +5,12 @@ from Apps.tiendaApp.models import CategoriaProd, Producto
 
 
 class ProductoAdmin(admin.ModelAdmin):
-    """ Clase Administracion  Tienda """
+    """ Clase Administración  Tienda """
     readonly_fields = ("creado", "update")
 
 
 class CategoriaProdAdmin(admin.ModelAdmin):
-    """ Clase Administracion  Tienda """
+    """ Clase Administración  Tienda """
     readonly_fields = ("creado", "update")
 
 

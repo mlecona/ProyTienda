@@ -1,4 +1,4 @@
-""" Contro de Aplicaciones de Tienda """
+""" Control de Aplicaciones de Tienda """
 
 from django.apps import AppConfig
 

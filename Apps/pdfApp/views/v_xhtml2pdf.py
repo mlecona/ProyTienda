@@ -1,4 +1,5 @@
-""" Ejemplo de Conversion a PDF con pyppeteer"""
+""" Ejemplo de Conversion a PDF con from xhtml2pdf import pisa
+"""
 
 from django.shortcuts import render
 

@@ -1,4 +1,4 @@
-""" Contro de Aplicaciones de Autentica Usuario """
+""" Control de Aplicaciones de Autentica Usuario """
 
 from django.apps import AppConfig
 

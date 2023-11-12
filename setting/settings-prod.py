@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-# Variables de entorno
-from decouple import config
 # Para despliegue
 import os
 # para despliegue instalar    pip install dj-database-url psycopg2-binary
@@ -29,15 +27,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = config("SECRET_KEY")
+
 # Para despliegue
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 # Se cambia cuando esta en Modo Producción a False
-# De string a booleano
-DEBUG = config("DEBUG", cast=bool)
+
+#DEBUG = True
 # Para despliegue
-#DEBUG = 'RENDER' not in os.environ
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -69,7 +67,6 @@ INSTALLED_APPS = [
     # Para manejo Autenticación
     'crispy_forms',
     'crispy_bootstrap5',
-    # Django Rest Framework
     'rest_framework',
 ]
 
@@ -111,23 +108,22 @@ WSGI_APPLICATION = 'paginaWeb.wsgi.application'
 
 DATABASES = {
     'default': {    # Para despliegue
-        #'default': dj_database_url.config(        
+        'default': dj_database_url.config(        
             # Feel free to alter this value to suit your needs.        
-        #    default='postgresql://postgres:postgres@localhost:5432/mysite',        
-        #    conn_max_age=600    )
+            default='postgresql://postgres:postgres@localhost:5432/mysite',        
+            conn_max_age=600    )
     
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
-        #'HOST': config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')]),
-        'HOST': config('ALLOWED_HOSTS'),
-        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'paginaWeb',
+        #'USER': 'postgres',
+        #'PASSWORD': '12345',
+        #'HOST': '127.0.0.1',
+        #'DATABASE_PORT': '5432'
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -186,13 +182,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # configuración email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOTS = "smtp.gmail.com"
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 #EMAIL_USE_TLS = False
+#EMAIL_PORT = 587
 
-
-EMAIL_HOTS_USER = config("EMAIL_HOTS_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOTS_USER = "marco.lecona.2@gmail.com"
+EMAIL_HOST_PASSWORD = "durheegyfcxjmqjf"
 
 # Para manejo Autenticación
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

@@ -21,7 +21,7 @@ class Pedido(models.Model):
 
     @property
     def total(self):
-        """ metodo de total de productos """
+        """ método de total de productos """
         return self.lineapedido_set.aggregate(
             total = Sum(F("precio")*F("cantidad"), output_field=FloatField())
         )["total"]

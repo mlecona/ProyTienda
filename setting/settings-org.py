@@ -11,12 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-# Variables de entorno
-from decouple import config
-# Para despliegue
-import os
-# para despliegue instalar    pip install dj-database-url psycopg2-binary
-import dj_database_url
 
 # Para identificar msj de error
 from django.contrib.messages import constants as msj_error
@@ -29,22 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = config("SECRET_KEY")
-# Para despliegue
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = 'django-insecure-r6*db0#)ruovquf44&qh7#4ih11b4a)kklbt)i*49h30eug&kc'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # Se cambia cuando esta en Modo Producción a False
-# De string a booleano
-DEBUG = config("DEBUG", cast=bool)
-# Para despliegue
-#DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Para despliegue
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:    
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -69,13 +55,11 @@ INSTALLED_APPS = [
     # Para manejo Autenticación
     'crispy_forms',
     'crispy_bootstrap5',
-    # Django Rest Framework
     'rest_framework',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',   # Para despliegue
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -110,24 +94,18 @@ WSGI_APPLICATION = 'paginaWeb.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {    # Para despliegue
-        #'default': dj_database_url.config(        
-            # Feel free to alter this value to suit your needs.        
-        #    default='postgresql://postgres:postgres@localhost:5432/mysite',        
-        #    conn_max_age=600    )
-    
+    'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
-        #'HOST': config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')]),
-        'HOST': config('ALLOWED_HOSTS'),
-        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)
+        'NAME': 'paginaWeb',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432'
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -166,14 +144,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Para despliegue configuración de archivos estáticos
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -186,13 +156,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # configuración email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOTS = "smtp.gmail.com"
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 #EMAIL_USE_TLS = False
+#EMAIL_PORT = 587
 
-
-EMAIL_HOTS_USER = config("EMAIL_HOTS_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOTS_USER = "marco.lecona.2@gmail.com"
+EMAIL_HOST_PASSWORD = "durheegyfcxjmqjf"
 
 # Para manejo Autenticación
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

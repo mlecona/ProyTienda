@@ -37,7 +37,7 @@ def procesar_pedido(request):
     return redirect("../tienda")
 
 def enviar_mail(**kwargs):
-    """ funcion para envio por email el pedido """
+    """ función para envio por email el pedido """
     asunto = kwargs.get("asunto")
     mensaje = render_to_string(
         "emails/pedido.html",{

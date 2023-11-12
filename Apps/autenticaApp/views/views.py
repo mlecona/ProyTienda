@@ -12,12 +12,12 @@ class Registroview(View):
     """ clase registro usuarios"""
 
     def get(self, request):
-        """ metodo get con form """
+        """ método get con form """
         form = UserCreationForm()
         return render(request, "registro/registro.html", {"form": form})
 
     def post(self, request):
-        """ metodo post """
+        """ método post """
         form = UserCreationForm(request.POST)
         if form.is_valid():
             usuario = form.save()
@@ -30,12 +30,12 @@ class Registroview(View):
 
 
 def cerrar_sesion(request):
-    """ funcion de salida de Sesion"""
+    """ función de salida de Sesion"""
     logout(request)
     return redirect('Home')
 
 def logear(request):
-    """ funcion de salida de Sesion"""
+    """ función de salida de Sesion"""
     form = AuthenticationForm(request, data=request.POST)
     if form.is_valid():
         print("entra if")
@@ -48,7 +48,7 @@ def logear(request):
         else:
             messages.error(request, "usuario no valido")
     else:
-        messages.error(request, "informacion incorrecta")
+        messages.error(request, "información incorrecta")
 
     form = AuthenticationForm()
     return render(request, "login/login.html", {"form": form})

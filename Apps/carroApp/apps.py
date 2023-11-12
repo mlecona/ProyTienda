@@ -1,4 +1,4 @@
-""" Contro de Aplicaciones de carro de Tienda """
+""" Centro de Aplicaciones de carro de Tienda """
 
 from django.apps import AppConfig
 

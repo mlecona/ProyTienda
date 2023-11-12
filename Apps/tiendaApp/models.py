@@ -10,7 +10,7 @@ class CategoriaProd(models.Model):
     update = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """ Clase opcion Categorias """
+        """ Clase opción Categorias """
         verbose_name = 'categoriaProd'
         verbose_name_plural = 'categoriasProd'
 
@@ -30,6 +30,6 @@ class Producto(models.Model):
     update = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """ Clase opcion Productos """
+        """ Clase opción Productos """
         verbose_name = 'producto'
         verbose_name_plural = 'productos'

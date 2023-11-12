@@ -1,2 +1,2 @@
 # ProyTienda
-Ejemplo de Tienda WEB con django y Django Rest Frameworg y de BD PostGress
+Ejemplo de Tienda WEB con Django y Django Rest Framework y de BD Postgres

@@ -5,7 +5,7 @@ from Apps.serviciosApp.models import Servicios
 
 
 class ServiciosAdmin(admin.ModelAdmin):
-    """ Clase Administracion  servicios """
+    """ Clase Administración  servicios """
     readonly_fields = ("creado", "update")
 
 

@@ -10,7 +10,7 @@ class Servicios(models.Model):
     update = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """ Clase opcion servicios """
+        """ Clase opción servicios """
         verbose_name = 'servicio'
         verbose_name_plural = 'servicios'
 

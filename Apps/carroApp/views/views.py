@@ -6,7 +6,7 @@ from Apps.tiendaApp.models import Producto
 
 
 def agregar_producto(request, producto_id):
-    """ función para gregar producto """
+    """ función para agregar producto """
     carro = Carro(request)
     producto = Producto.objects.get(id=producto_id)
     carro.agregar(producto=producto)

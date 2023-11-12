@@ -8,7 +8,7 @@ from django.conf import settings
 class envio_email:
 
     def envioemail(**kwargs):
-        """ funcion de Envio Email """
+        """ función de Envio Email """
         # datos base en settings
         remitente = settings.EMAIL_HOTS_USER
         password = settings.EMAIL_HOST_PASSWORD

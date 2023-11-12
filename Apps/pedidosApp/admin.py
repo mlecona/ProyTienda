@@ -5,12 +5,12 @@ from Apps.pedidosApp.models import Pedido, LineaPedido
 
 
 class PedidoAdmin(admin.ModelAdmin):
-    """ Clase Administracion  Tienda """
+    """ Clase Administración  Tienda """
     readonly_fields = ("creado", "update")
 
 
 class LineaPedidoAdmin(admin.ModelAdmin):
-    """ Clase Administracion  Tienda """
+    """ Clase Administración  Tienda """
     readonly_fields = ("creado", "update")
 
 

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% extends "pywebApp/base.html" %} {% load static %} {% block content %}
 
 <!-- Heading -->
@@ -6,7 +5,7 @@
   {% if "valido" in request.GET %}
   <p style="color: white">Información enviada correctamente, Gracias</p>
   {% else %}
-  <p style="color: white">Error en envio, Gracias</p>
+  <p style="color: white">Error en envió, Gracias</p>
   {% endif %}
   <form action="" method="POST" style="text-align: center">
     {% csrf_token %}

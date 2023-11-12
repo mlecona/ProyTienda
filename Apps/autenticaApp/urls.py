@@ -1,4 +1,4 @@
-""" Rutas de Autenticacion de Usuario """
+""" Rutas de Autenticación de Usuario """
 
 from django.urls import path
 from Apps.autenticaApp.views import views

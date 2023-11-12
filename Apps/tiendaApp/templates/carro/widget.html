@@ -1,0 +1,47 @@
+<table class="table table-bordered" style="color: white">
+  <thead>
+    <tr>
+      <th colspan="3" class="text-center">Carro Compras</th>
+    </tr>
+    <tr>
+      <th>producto</th>
+      <th>Cantidad</th>
+      <th>Suma</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if request.session.carro.items %} 
+        {% for key, value in request.session.carro.items %} 
+            <tr class="text-center">
+                <td>{{value.nombre}}</td>
+                <td>{{value.cantidad}}</td>
+                <td>
+                    <a href="{% url 'app_carro:Restar' value.producto_id %}" class="btn btn-sm btn-success">-</a>
+                    <a href="{% url 'app_carro:Agregar' value.producto_id %}" class="btn btn-sm btn-success">+</a><br>
+                    {{value.precio}} $
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <th colspan="3">
+                <div class="alert alert-danger text-center">Sin Productos</div>
+            </th>
+        </tr> 
+    {% endif %}
+  </tbody>
+  <tfoot>
+    <tr>
+        <td colspan="3">
+            <p style="color: white">Total: $ &nbsp {{importe_carro}} </p>
+        </td>
+    </tr>
+    {% if request.session.carro.items %} 
+      <tr>
+        <td colspan="3" style="text-align: center">
+          <a href="../pedidos" class="btn btn-success">Hacer Pedido</a>
+        </td>
+      </tr>
+    {% endif %}
+  </tfoot>
+</table>

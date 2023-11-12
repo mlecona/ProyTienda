@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "pywebApp/base.html" %} {% load static %} {% block content %}
+
+<!-- Heading -->
+<div class="contenedorForm">
+  {% if "valido" in request.GET %}
+  <p style="color: white">Información enviada correctamente, Gracias</p>
+  {% else %}
+  <p style="color: white">Error en envio, Gracias</p>
+  {% endif %}
+  <form action="" method="POST" style="text-align: center">
+    {% csrf_token %}
+    <!-- medida de seguridad para formulario -->
+    <table style="color: white; margin: 20px auto">
+      {{ miform.as_table }}
+    </table>
+    <input type="submit" value="Enviar" style="width: 150px" />
+  </form>
+</div>
+
+<!-- Message -->
+
+{% endblock %}

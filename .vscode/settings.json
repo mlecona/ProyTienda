@@ -1,0 +1,21 @@
+{
+  "activestate.promptRuntimeCreation": false,
+  "python.analysis.typeCheckingMode": "off",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none",
+  "cSpell.words": [
+    "Apicategori",
+    "Apipost",
+    "Blogapp",
+    "categoria",
+    "Categoria",
+    "categorias",
+    "Pdfapi",
+    "postgresql",
+    "psycopg",
+    "pyweb",
+    "viewsets"
+  ]
+}

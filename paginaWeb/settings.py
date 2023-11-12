@@ -108,25 +108,21 @@ WSGI_APPLICATION = 'paginaWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {    # Para despliegue
-        dj_database_url.config(        
+DATABASES = { # Para despliegue
+    'default': dj_database_url.config(        
         # Feel free to alter this value to suit your needs.        
-        default='postgresql://postgres:postgres@localhost:5432/mysite', conn_max_age=600),
-    
+        default='postgresql://postgres:postgres@localhost:5432/mysite', 
+            conn_max_age=600)
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        
-        """
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': config("DB_NAME"),
+        #'USER': config("DB_USER"),
+        #'PASSWORD': config("DB_PASSWORD"),
         #'HOST': config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')]),
-        'HOST': config('ALLOWED_HOSTS'),
-        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)  """
-    }
-}
+        #'HOST': config('ALLOWED_HOSTS'),
+        #'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)
+        }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -165,10 +161,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Para despliegue configuración de archivos estáticos
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+# Following settings only make sense on production and may break development environments.
+if not DEBUG:
+    # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

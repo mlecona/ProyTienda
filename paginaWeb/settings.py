@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # Se cambia cuando esta en Modo Producción a False
 # De string a booleano
 #DEBUG = config("DEBUG", cast=bool)
-
+DEBUG = False
 # Para despliegue
 DEBUG = 'RENDER' not in os.environ
 

@@ -34,11 +34,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 # Se cambia cuando esta en Modo Producción a False
-# De string a booleano
-#DEBUG = config("DEBUG", cast=bool)
-DEBUG = False
+DEBUG = config("DEBUG", cast=bool)
+
 # Para despliegue
-DEBUG = 'RENDER' not in os.environ
+#DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -48,16 +47,16 @@ if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
-
-INSTALLED_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # manejo de archivos static
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+]
+
+LOCAL_APPS = [
     # aplicaciones del proyecto
     'Apps.pywebApp',
     'Apps.serviciosApp',
@@ -68,12 +67,19 @@ INSTALLED_APPS = [
     'Apps.autenticaApp',
     'Apps.pedidosApp',
     'Apps.pdfApp',
+]
+
+THIRD_APPS = [
+    # manejo de archivos static
+    'whitenoise.runserver_nostatic',
     # Para manejo Autenticación
     'crispy_forms',
     'crispy_bootstrap5',
     # Django Rest Framework
     'rest_framework',
 ]
+
+INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,19 +117,16 @@ WSGI_APPLICATION = 'paginaWeb.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = { # Para despliegue
-    'default': dj_database_url.config(        
-        # Feel free to alter this value to suit your needs.        
-        default='postgresql://postgres:postgres@localhost:5432/mysite', 
-            conn_max_age=600)
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': config("DB_NAME"),
-        #'USER': config("DB_USER"),
-        #'PASSWORD': config("DB_PASSWORD"),
+    'default': 
+        #{'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3'},
+        {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config("DB_NAME"),
+        'USER': config("DB_USER"),
+        'PASSWORD': config("DB_PASSWORD"),
         #'HOST': config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')]),
-        #'HOST': config('ALLOWED_HOSTS'),
-        #'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)
+        'HOST': config('ALLOWED_HOSTS'),
+        'DATABASE_PORT': config("DB_DATABASE_PORT", cast=int)}
         }
 
 # Password validation
@@ -167,14 +170,14 @@ STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-#if not DEBUG:
-# Tell Django to copy statics to the `staticfiles` directory
-# in your application directory on Render.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+if not DEBUG:
+    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Turn on WhiteNoise storage backend that takes care of compressing static files
 # and creating unique names for each version so they can safely be cached forever.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -183,7 +186,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Para guardar archivos de media en computadora
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = BASE_DIR / 'media'
 
 # configuración email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

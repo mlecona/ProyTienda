@@ -16,6 +16,7 @@ dill==0.3.7
 dj-database-url==2.1.0
 Django==4.2
 django-crispy-forms==2.1
+django-simple-history==3.4.0
 djangorestframework==3.14.0
 gunicorn==21.2.0
 html5lib==1.1

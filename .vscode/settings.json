@@ -7,6 +7,8 @@
   "python.formatting.provider": "none",
   "cSpell.words": [
     "Apicategori",
+    "Apilineped",
+    "Apipedido",
     "Apipost",
     "asgi",
     "ASGI",
@@ -23,8 +25,10 @@
     "envio",
     "envioemail",
     "formcontacto",
+    "lineaped",
     "lineapedido",
     "lineapedidos",
+    "lineped",
     "logear",
     "micategoria",
     "micategoriaprod",
@@ -49,6 +53,7 @@
     "Serviciosapp",
     "sesion",
     "Tiendaapp",
+    "Userapp",
     "viewsets",
     "whitenoise"
   ]

@@ -1,7 +1,9 @@
 """ Modelos de Blogs """
 
 from django.db import models
-from django.contrib.auth import models as auth_models
+#from django.contrib.auth import models as auth_models
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 
 class Categoria(models.Model):
@@ -25,7 +27,7 @@ class Post(models.Model):
     contenido = models.CharField(max_length=50)
     # Para guardar archivo en carpeta media
     imagen = models.ImageField(upload_to='blog', null=True, blank=True)
-    autor = models.ForeignKey(auth_models.User, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)   # se cambio auth_models.User
     categorias = models.ManyToManyField(Categoria)
     creado = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now_add=True)

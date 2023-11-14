@@ -54,6 +54,7 @@ LOCAL_APPS = [
     'Apps.autenticaApp',
     'Apps.pedidosApp',
     'Apps.pdfApp',
+    'Apps.userApp',
 ]
 
 THIRD_APPS = [
@@ -62,6 +63,8 @@ THIRD_APPS = [
     'crispy_bootstrap5',
     # Django Rest Framework
     'rest_framework',
+    # Historial de usuarios
+    'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -74,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',   # Historial de usuarios
 ]
 
 ROOT_URLCONF = 'paginaWeb.urls'
@@ -144,6 +148,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Historial de usuarios
+AUTH_USER_MODEL = 'userApp.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
